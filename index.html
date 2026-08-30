@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 
 
 <head>  
@@ -596,9 +596,9 @@
   </style>
   <script src="assets/js/lib.js?v=5.43"></script>
   <link href="assets/css/albion.css?v=5.43" rel="stylesheet">
-  <!-- ONYX NOVA: temÃ« e re e plotÃ« (override mbi albion.css) + fshirje e chat-it tÃ« vjetÃ«r -->
+  <!-- ONYX NOVA: temë e re e plotë (override mbi albion.css) + fshirje e chat-it të vjetër -->
   <link href="assets/css/onyx-theme.css?v=1" rel="stylesheet">
-  <!-- ONYX Ã— RYUTEN: temÃ« e frymÃ«zuar nga ryuten.io (gold/amber + Titillium Web) -->
+  <!-- ONYX × RYUTEN: temë e frymëzuar nga ryuten.io (gold/amber + Titillium Web) -->
   <link href="assets/css/ryuten-theme.css?v=2" rel="stylesheet">
     
   <style></style>
@@ -858,14 +858,13 @@
         <input class="menu-inputs" id="skin" placeholder="Skin URL (imgur)" maxlength="60">
         <input class="menu-inputs" id="skin2" placeholder="Skin URL 2 (imgur)" maxlength="60">
         <div>
-<select class="menu-inputs" id="servers">
-<option value="eu.senpa.io:2001">FFA 404</option>
-<option value="eu.senpa.io:2001">EU DUAL - eu.2001</option>
-<option value="eu.senpa.io:1200">EU DUAL ORIGJINAL</option>
-<option value="us.senpa.io:2001">NA FFA - SENPA.IO</option>
-<option value="us.senpa.io:2002">NA DUAL - SENPA.IO</option>
-<option value="eu.senpa.io:9999">EU MEGA - SENPA.IO</option>
-<option value="us.senpa.io:4002">NA MEGA - SENPA.IO</option>
+          <select class="menu-inputs" id="servers">
+            <option value="eu.senpa.io:2001">EU FFA - SENPA.IO</option>
+            <option value="us.senpa.io:2001">NA FFA - SENPA.IO</option>
+            <option value="eu.senpa.io:1200">EU DUAL - SENPA.IO</option>
+            <option value="us.senpa.io:2002">NA DUAL - SENPA.IO</option>
+            <option value="eu.senpa.io:9999">EU MEGA - SENPA.IO</option>
+            <option value="us.senpa.io:4002">NA MEGA - SENPA.IO</option>
           </select>
         </div>
         <div class="decorator"></div>
@@ -1602,10 +1601,10 @@
             <span class="command-input-box"><i>9</i><input placeholder="Command 9" id="command9"></span>
           </div>
           <div class="row">
-            <span class="command-input-box"><i>â†‘</i><input placeholder="Command Up" id="command11"></span>
+            <span class="command-input-box"><i>↑</i><input placeholder="Command Up" id="command11"></span>
           </div>
           <div class="row">
-            <span class="command-input-box"><i>â†“</i><input placeholder="Command Down" id="command12"></span>
+            <span class="command-input-box"><i>↓</i><input placeholder="Command Down" id="command12"></span>
           </div>
           <div class="row">
             <span class="command-input-box"><i>&lt;</i><input placeholder="Command Left" id="command13"></span>
@@ -2526,54 +2525,37 @@
     </div>
   </div>
 
-  <!-- Senpa JWT (si 404FF) — vetëm ruan token-in, nuk prek motorin e lojës -->
+  <!-- Agar24-style Senpa JWT paste (stores senpa_auth_token before game auth packet) -->
   <script src="onyx-senpa-auth.js"></script>
-  <script type="text/javascript" src="assets/js/runtime.58908f3dbdb804a00215.js" charset="utf-8"></script>
-  <script type="text/javascript" src="assets/js/vendors.c173b9063bd6941f8bc0.js" charset="utf-8"></script>
+  <script src="assets/js/runtime.58908f3dbdb804a00215.js"></script>
+  <script src="assets/js/vendors.c173b9063bd6941f8bc0.js"></script>
   <script>
     window.k = window.k || {};
-    k.locateFile = (name, path) => path + "899.wasm";
-
-    k.print = (a) => console.log("[print]", a);
-    k.printErr = (a) => console.error("[err]", a);
-    k.setStatus = (s) => console.log("[status]", s);
+    k.locateFile = (name, path) => path + '899.wasm';
+    k.print = (a) => console.log('[print]', a);
+    k.printErr = (a) => console.error('[err]', a);
+    k.setStatus = (s) => console.log('[status]', s);
   </script>
-
- 
-  <!-- Chat: full delt.io chat ported 1:1 from the working bundle. chat.js builds its
-       own UI (#chat-container) and connects to wss://chat.delt.io. No game code is touched. -->
-
-
-  
   <script src="chat.js"></script>
-  <!-- Rregullime para motorit: aktivizon "Everyone skins" + "URL skins" -->
   <script src="onyx-custom.js"></script>
-  <!-- ONYX Ã— RYUTEN: tinguj butonash (hover/click) -->
   <script src="assets/js/ryuten-sounds.js"></script>
-  
-  <script type="text/javascript" src="./deo.onyx.beautified.js?v=4" charset="utf-8"></script>
-
-  <!-- ONYX Ã— RYUTEN: shtesa kozmetike (ikona iconfont + disconnect screen) -->
+  <script src="./deo.onyx.beautified.js"></script>
   <script src="assets/js/ryuten-extras.js?v=2"></script>
-
   <script>
+    // force onRuntimeInitialized
     for (const key of Object.keys(window)) {
       const v = window[key];
-      if (typeof v === "function") {
+      if (typeof v === 'function') {
         const s = Function.prototype.toString.call(v);
-        if (s.includes("onRuntimeI") || s.includes("onRuntimeInitialized")) {
+        if (s.includes('onRuntimeI') || s.includes('onRuntimeInitialized')) {
           try { v(); } catch { }
         }
       }
     }
   </script>
-
-
-
-  
   <script>
-    
-      window.addEventListener('mousedown', function(e) {
+    // Mouse click → Wave (from localStorage mouse + hotkeys config)
+    window.addEventListener('mousedown', function (e) {
       if (e.target.id !== 'canvas') return;
       try {
         var mouseConf = null;
@@ -2584,37 +2566,29 @@
           if (key && key.endsWith('hotkeys')) hotkeysConf = JSON.parse(localStorage.getItem(key) || '{}');
         }
         if (!mouseConf) return;
-
         var action = '';
         if (e.button === 0) action = mouseConf.leftClick;
         if (e.button === 1) action = mouseConf.middleClick;
         if (e.button === 2) action = mouseConf.rightClick;
-
         if (action === 'wave') {
           var waveKeyStr = (hotkeysConf && hotkeysConf.waveKey) ? hotkeysConf.waveKey : 'X';
           var keyCode = waveKeyStr.charCodeAt(0);
           if (waveKeyStr === 'SPACE') keyCode = 32;
-          
           var kd = new KeyboardEvent('keydown', {
             key: waveKeyStr, code: 'Key' + waveKeyStr, keyCode: keyCode, which: keyCode, bubbles: true
           });
           document.dispatchEvent(kd);
-
-          setTimeout(function() {
-             var ku = new KeyboardEvent('keyup', {
-               key: waveKeyStr, code: 'Key' + waveKeyStr, keyCode: keyCode, which: keyCode, bubbles: true
-             });
-             document.dispatchEvent(ku);
+          setTimeout(function () {
+            var ku = new KeyboardEvent('keyup', {
+              key: waveKeyStr, code: 'Key' + waveKeyStr, keyCode: keyCode, which: keyCode, bubbles: true
+            });
+            document.dispatchEvent(ku);
           }, 50);
         }
       } catch (err) {}
     });
   </script>
-  <script src="savee.js"></script>
 
 </body>
 
 </html>
-
-
-

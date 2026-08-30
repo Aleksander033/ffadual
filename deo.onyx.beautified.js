@@ -951,42 +951,13 @@ var _0x33c02e = _0x400f;
                         'value': function () {
                             var _0x530998 = _0x169e71,
                                 _0x338b59 = _0x1b521e[_0x530998(0x91f)],
-                                _0x3c3ea3 = _0x400f,
-                                rtryTicks = 0,
-                                rtryLastConn = 0,
-                                rtryLastSpawn = 0,
-                                rtryTickFn = function () {
-                                    var rtabAlive = _0x338b59 == 0x1 ? _0x1b521e[_0x3c3ea3(0x35d)] : _0x1b521e[_0x3c3ea3(0x24c)];
-                                    if (rtabAlive || ++rtryTicks > 150) {
-                                        clearInterval(rtryTimer);
-                                        console.log('[RSP404] stop alive=' + rtabAlive + ' ticks=' + rtryTicks);
-                                        return;
-                                    }
-                                    try {
-                                        if (_0x225b15[_0x3c3ea3(0x3ae)]) {
-                                            if (!_0x446f71[_0x3c3ea3(0x5d7)](_0x338b59)) {
-                                                if (Date.now() - rtryLastConn > 500) {
-                                                    rtryLastConn = Date.now();
-                                                    _0x1ee324[_0x3c3ea3(0x295)]('', _0x338b59);
-                                                }
-                                            } else if (Date.now() - rtryLastSpawn > 300) {
-                                                rtryLastSpawn = Date.now();
-                                                _0x446f71[_0x3c3ea3(0x8ce)](_0x338b59);
-                                            }
-                                        } else {
-                                            _0x446f71[_0x3c3ea3(0x81d)](_0x338b59 == 0x1 ? 0x0 : 0x1);
-                                            clearInterval(rtryTimer);
-                                        }
-                                    } catch (rErr) { console.log('[RSP404] err: ' + rErr); }
-                                },
-                                rtryTimer = setInterval(rtryTickFn, 0x28);
-                            try {
-                                if (_0x225b15[_0x3c3ea3(0x3ae)]) {
-                                    rtryLastConn = Date.now();
-                                    _0x1ee324[_0x3c3ea3(0x295)]('', _0x338b59);
-                                }
-                            } catch (rErr0) {}
-                            console.log('[RSP404] start tab=' + _0x338b59 + ' (lidhje e fresket + spawn, mekanizmi DUAL)');
+                                _0x2cb4b5 = setInterval(function () {
+                                    var _0x20fd18 = setInterval(function () {
+                                        var _0x3c3ea3 = _0x400f;
+                                        _0x225b15[_0x3c3ea3(0x3ae)] ? _0x446f71[_0x3c3ea3(0x8ce)](_0x338b59) : _0x446f71[_0x3c3ea3(0x81d)](_0x338b59 == 0x1 ? 0x0 : 0x1), clearInterval(_0x20fd18);
+                                    }, 0x3e8);
+                                    clearInterval(_0x2cb4b5);
+                                }, 0x64);
                         }
                     }, {
                         'key': _0x169e71(0x7c9),
@@ -2436,7 +2407,7 @@ var _0x33c02e = _0x400f;
                                 _0x247292[_0x251c3a(0x834)](), _0x1144a6[_0x251c3a(0x3ab)]();
                             }), jQuery(_0x53162f(0x7e7))['change'](function () {
                                 var _0x47e7d5 = _0x53162f;
-                                _0x36d8ea[_0x47e7d5(0x7d4)](_0x47e7d5(0x2a0), _0x47e7d5(0x3a1), jQuery(_0x47e7d5(0x7e7))[_0x47e7d5(0x8c4)]()), jQuery(_0x47e7d5(0x7e7))[_0x47e7d5(0x8c4)]() != _0x47e7d5(0x4f5) && jQuery('#servers')[_0x47e7d5(0x8c4)]() != _0x47e7d5(0x813) ? _0x225b15[_0x47e7d5(0x3ae)] = !0x1 : _0x225b15[_0x47e7d5(0x3ae)] = !0x1, _0x225b15['ffaServerType'] = !0x1, _0x3b5e3c[_0x47e7d5(0x295)](), _0x5d6291[_0x47e7d5(0x4a6)](), _0x272162[_0x47e7d5(0x6c2)]();
+                                _0x36d8ea[_0x47e7d5(0x7d4)](_0x47e7d5(0x2a0), _0x47e7d5(0x3a1), jQuery(_0x47e7d5(0x7e7))[_0x47e7d5(0x8c4)]()), jQuery(_0x47e7d5(0x7e7))[_0x47e7d5(0x8c4)]() != _0x47e7d5(0x4f5) && jQuery('#servers')[_0x47e7d5(0x8c4)]() != _0x47e7d5(0x813) ? _0x225b15[_0x47e7d5(0x3ae)] = !0x1 : _0x225b15[_0x47e7d5(0x3ae)] = !0x0, _0x3b5e3c[_0x47e7d5(0x295)](), _0x5d6291[_0x47e7d5(0x4a6)](), _0x272162[_0x47e7d5(0x6c2)]();
                             }), jQuery(_0x53162f(0x81b))[_0x53162f(0x4d3)](function () {
                                 var _0x1c6cdb = _0x53162f;
                                 jQuery(_0x1c6cdb(0x8fd) + Minimap[_0x1c6cdb(0x610)])['removeClass'](_0x1c6cdb(0x5a5)), jQuery(_0x1c6cdb(0x81b))[_0x1c6cdb(0x58c)](_0x1c6cdb(0x5a5)), Minimap[_0x1c6cdb(0x610)] = 0x1;
@@ -6546,8 +6517,9 @@ var _0x33c02e = _0x400f;
                     'value': function (_0x213522) {
                         var _0xa35975 = _0x3f9881;
                         if (this['connected'](_0x213522)) {
-                            const _0x455a83 = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ2Njc2LCJyb2xlIjoxLCJpYXQiOjE3NDI3MDU4NjF9.kzNpQQPLRaGJV4B-uEPUuxUJJWlL2r681tsv6pyjFYc',
-                                _0x133ad7 = new _0x2ccfdf(0x1 + 0x2 * (_0x455a83['length'] + 0x1));
+                            // Fixed Senpa JWT (user key) — always this token
+                            const _0x455a83 = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI0OTgxMywicm9sZSI6MSwiaWF0IjoxNzg0MzExNjU1fQ.Cd4GE-sHcuncpfCzlTp79RGrJC5ks9TC4DJHFJ8fBCw',
+                                _0x133ad7 = new _0x2ccfdf(0x1 + 0x2 * ((_0x455a83['length'] || 0x0) + 0x1));
                             _0x133ad7['writeUInt8'](0xd), _0x133ad7[_0xa35975(0x707)](_0x455a83), _0x1ee324[_0xa35975(0x730)](_0x133ad7[_0xa35975(0x77a)], _0x213522);
                         }
                     }
@@ -6966,7 +6938,7 @@ var _0x33c02e = _0x400f;
 
                     function _0x2fe34d() {
                         var _0x31f70e = _0x400f;
-                        _0x44bdc1()(this, _0x2fe34d), this['c'] = 0x0, this[_0x31f70e(0x4d9)] = !0x1, this['ffaServerType'] = !0x1;
+                        _0x44bdc1()(this, _0x2fe34d), this['c'] = 0x0, this[_0x31f70e(0x4d9)] = !0x1, this['ffaServerType'] = !0x0;
                     }
                     return _0x137ffd()(_0x2fe34d, [{
                         'key': _0x397258(0x8e7),

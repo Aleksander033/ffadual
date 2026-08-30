@@ -951,42 +951,13 @@ var _0x33c02e = _0x400f;
                         'value': function () {
                             var _0x530998 = _0x169e71,
                                 _0x338b59 = _0x1b521e[_0x530998(0x91f)],
-                                _0x3c3ea3 = _0x400f,
-                                rtryTicks = 0,
-                                rtryLastConn = 0,
-                                rtryLastSpawn = 0,
-                                rtryTickFn = function () {
-                                    var rtabAlive = _0x338b59 == 0x1 ? _0x1b521e[_0x3c3ea3(0x35d)] : _0x1b521e[_0x3c3ea3(0x24c)];
-                                    if (rtabAlive || ++rtryTicks > 150) {
-                                        clearInterval(rtryTimer);
-                                        console.log('[RSP404] stop alive=' + rtabAlive + ' ticks=' + rtryTicks);
-                                        return;
-                                    }
-                                    try {
-                                        if (_0x225b15[_0x3c3ea3(0x3ae)]) {
-                                            if (!_0x446f71[_0x3c3ea3(0x5d7)](_0x338b59)) {
-                                                if (Date.now() - rtryLastConn > 500) {
-                                                    rtryLastConn = Date.now();
-                                                    _0x1ee324[_0x3c3ea3(0x295)]('', _0x338b59);
-                                                }
-                                            } else if (Date.now() - rtryLastSpawn > 300) {
-                                                rtryLastSpawn = Date.now();
-                                                _0x446f71[_0x3c3ea3(0x8ce)](_0x338b59);
-                                            }
-                                        } else {
-                                            _0x446f71[_0x3c3ea3(0x81d)](_0x338b59 == 0x1 ? 0x0 : 0x1);
-                                            clearInterval(rtryTimer);
-                                        }
-                                    } catch (rErr) { console.log('[RSP404] err: ' + rErr); }
-                                },
-                                rtryTimer = setInterval(rtryTickFn, 0x28);
-                            try {
-                                if (_0x225b15[_0x3c3ea3(0x3ae)]) {
-                                    rtryLastConn = Date.now();
-                                    _0x1ee324[_0x3c3ea3(0x295)]('', _0x338b59);
-                                }
-                            } catch (rErr0) {}
-                            console.log('[RSP404] start tab=' + _0x338b59 + ' (lidhje e fresket + spawn, mekanizmi DUAL)');
+                                _0x2cb4b5 = setInterval(function () {
+                                    var _0x20fd18 = setInterval(function () {
+                                        var _0x3c3ea3 = _0x400f;
+                                        _0x225b15[_0x3c3ea3(0x3ae)] ? _0x446f71[_0x3c3ea3(0x8ce)](_0x338b59) : _0x446f71[_0x3c3ea3(0x81d)](_0x338b59 == 0x1 ? 0x0 : 0x1), clearInterval(_0x20fd18);
+                                    }, 0x3e8);
+                                    clearInterval(_0x2cb4b5);
+                                }, 0x64);
                         }
                     }, {
                         'key': _0x169e71(0x7c9),

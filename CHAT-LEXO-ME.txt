@@ -1,0 +1,74 @@
+==========================================================================
+ CHAT delt.io ne ONYX — udhezime (LEXO-ME)
+==========================================================================
+
+PSE DUHET NJE "RELAY"?
+----------------------
+Serveri i chat-it (chat.delt.io) eshte pas Cloudflare dhe e pranon lidhjen
+vetem kur header-i "Origin" eshte vete delt.io. Nje browser NUK mund ta
+ndryshoje "Origin" (eshte gjithmone adresa e faqes tende, p.sh. localhost),
+prandaj lidhja direkte nga browseri refuzohet (gabimi "WebSocket failed").
+
+Nje program Node (jashte browserit) NUK ka kete kufizim: e vendos vete
+"Origin: https://delt.io" dhe lidhja hapet. Kete e ben "relay.js": qendron
+ne mes — browseri lidhet me relay-n ne kompjuterin tend, relay-i lidhet me
+delt.io me Origin-in e duhur dhe i kalon mesazhet pa ndryshim.
+
+(E provuar: me relay -> lidhja HAPET, merr connectionID dhe chatId reale nga
+serveri, dergon/merr mesazhe. Pa relay -> browseri refuzohet nga Cloudflare.)
+
+
+SI TA NDEZESH (1 here ne fillim)
+--------------------------------
+1) Sigurohu qe ke Node.js te instaluar (https://nodejs.org).
+2) Hap kete dosje (nglidc-main) ne terminal.
+   - Nese skedari node_modules NUK eshte ketu, shkruaj nje here:   npm i
+     (nese eshte ketu, kalo kete hap — gjithcka eshte gati)
+
+NISJA E CHAT-IT (cdo here qe luan)
+----------------------------------
+- Windows: kliko dy here  start-relay.bat   (lere dritaren HAPUR)
+- Mac/Linux: ne terminal:  bash start-relay.sh   (ose: node relay.js)
+
+Do shohesh:  [relay] listening on ws://localhost:8787 ...
+Lere ate dritare hapur sa kohe luan.
+
+Pastaj hap lojen ne localhost si zakonisht. Chat-i lidhet vete.
+Ne Console (F12) duhet te shohesh:
+   [ONYX-CHAT] connecting ws://localhost:8787
+   [ONYX-CHAT] WebSocket opened
+   [ONYX-CHAT] Server registered tab { chatId: ... }
+Shtyp Enter -> shkruaj -> Enter per te derguar.
+
+
+NESE DEL "upstream ERROR ... 500" (Cloudflare te bllokon)
+---------------------------------------------------------
+Kjo do te thote qe serveri delt.io (Cloudflare) po e refuzon IP-n tende
+(zakonisht pas shume rilidhjeve te shpejta, ose bllok rajoni). Kodi/relay
+eshte ne rregull (nga rrjete te tjera lidhet pa problem). Provo me radhe:
+
+1) Prit 10-15 min dhe provo perseri (blloku i perkohshem hiqet vete).
+2) Provo nje rrjet tjeter: hotspot i telefonit, ose VPN ne nje shtet tjeter.
+3) Jep relay-t nje "cf_clearance" cookie nga browseri yt (me i sigurti):
+   a. Hap https://delt.io ne Chrome dhe kalo kontrollin e Cloudflare (prit sa
+      te ngarkohet faqja normalisht).
+   b. F12 -> Application -> Cookies -> https://delt.io -> kopjo vleren e
+      cookie-t "cf_clearance".
+   c. F12 -> Console -> shkruaj:  navigator.userAgent  -> kopjo tekstin.
+   d. Riemerto skedarin "relay.cookie.example.json" ne "relay.cookie.json"
+      dhe vendos aty cookie-n + user-agent-in. Ruaje.
+   e. Ndale dhe nise perseri relay-n (start-relay.bat). Duhet te shohesh:
+      [relay] Origin=https://delt.io  cookie=YES
+   Shenim: cf_clearance skadon (disa ore/dite); kur del prap 500, perserit.
+
+
+RREGULLIME (opsionale)
+----------------------
+- Ndrysho portin:           PORT=9000 node relay.js
+  (pastaj ne faqe, para chat.js:  window.ONYX_CHAT_RELAY='ws://localhost:9000')
+- Detyro lidhje DIREKTE (vetem nese faqja jote eshte ne nje origin te lejuar
+  nga delt.io):   window.ONYX_CHAT_DIRECT=true
+- chat.js zgjedh vete: ne localhost perdor relay, ne nje domain te deployuar
+  perdor lidhjen direkte.
+
+==========================================================================

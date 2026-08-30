@@ -1,0 +1,304 @@
+/* ============================================================================
+   ONYX NOVA — Temë e re, e plotë (override mbi albion.css)
+   ----------------------------------------------------------------------------
+   Ngarkohet PAS albion.css → mbishkruan ngjyrat, pozicionet, fontet, panelet.
+   Stil: glassmorphism i errët + neon cyan/violet, kënde të rrumbullakosura,
+   tipografi "Rajdhani/Orbitron". Krejt ndryshe nga tema origjinale gri/ink.
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+  --nova-bg-0: #05060c;
+  --nova-bg-1: #0b0e18;
+  --nova-glass: rgba(15, 19, 32, 0.72);
+  --nova-glass-soft: rgba(28, 34, 54, 0.55);
+  --nova-line: rgba(120, 200, 255, 0.16);
+  --nova-line-strong: rgba(120, 200, 255, 0.40);
+
+  --nova-cyan: #22d3ee;
+  --nova-cyan-2: #38bdf8;
+  --nova-violet: #a78bfa;
+  --nova-pink: #f472b6;
+
+  --nova-text: #e8eef9;
+  --nova-muted: #8a96ad;
+
+  --nova-grad: linear-gradient(135deg, var(--nova-cyan) 0%, var(--nova-violet) 55%, var(--nova-pink) 100%);
+  --nova-glow: 0 0 18px rgba(34, 211, 238, 0.45);
+  --nova-glow-soft: 0 0 10px rgba(167, 139, 250, 0.35);
+  --nova-radius: 14px;
+  --nova-font: 'Rajdhani', 'Segoe UI', sans-serif;
+  --nova-display: 'Orbitron', 'Rajdhani', sans-serif;
+}
+
+/* ── Sfondi: aurora e gjallë në vend të grit të thatë ───────────────────── */
+body {
+  background-color: var(--nova-bg-0) !important;
+  background-image:
+    radial-gradient(1100px 600px at 12% -10%, rgba(34, 211, 238, 0.16), transparent 60%),
+    radial-gradient(1000px 700px at 110% 10%, rgba(167, 139, 250, 0.16), transparent 60%),
+    radial-gradient(900px 700px at 50% 120%, rgba(244, 114, 182, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--nova-bg-1) 0%, var(--nova-bg-0) 100%) !important;
+  color: var(--nova-text);
+  font-family: var(--nova-font);
+}
+
+::selection { background: rgba(34, 211, 238, 0.30); color: #fff; }
+
+/* Scrollbar global */
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--nova-cyan), var(--nova-violet));
+  border-radius: 8px;
+}
+
+/* ── Overlay i menusë ───────────────────────────────────────────────────── */
+#menu-overlay {
+  background:
+    radial-gradient(1200px 800px at 50% 38%, rgba(10, 14, 26, 0.25), rgba(4, 6, 12, 0.78)) !important;
+}
+/* Shmangim backdrop-filter në mbulesën full-screen (kushton shumë FPS).
+   E zëvendësojmë me një shtresë gjysmë-transparente. */
+.menu-blur {
+  background: rgba(4, 6, 12, 0.45) !important;
+}
+
+/* ── Shiriti i navigimit (Settings / Play / ...) ────────────────────────── */
+.control-bar-container { background: transparent !important; }
+.control-bar { background: transparent !important; }
+
+/* Heqim blloqet gri të pjerrëta të vjetra */
+.bar-button-bg,
+.bar-button-bg.left, .bar-button-bg.center, .bar-button-bg.right,
+.bar-button-bg.settings, .bar-button-bg.play, .bar-button-bg.spectate,
+.bar-button-bg.inputs, .bar-button-bg.theme, .bar-button-bg.dummy {
+  background: transparent !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Vendosim një "dock" prej qelqi pas butonave */
+.bar-button-container:nth-of-type(2) {
+  background: var(--nova-glass) !important;
+  border: 1px solid var(--nova-line) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.05);
+  padding: 6px 10px;
+}
+
+.bar-button:not(.dummy) {
+  margin-top: 0 !important;
+  width: 118px !important;
+  border-radius: 12px !important;
+  color: var(--nova-muted) !important;
+  transition: transform .18s ease, color .18s ease, background .18s ease, box-shadow .18s ease !important;
+  display: inline-flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0 !important;
+}
+#button-settings { color: var(--nova-muted) !important; }
+.bar-button i { font-size: 30px !important; }
+.bar-button .text {
+  font-family: var(--nova-display) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  font-size: 11px !important;
+}
+.bar-button:hover {
+  transform: translateY(-3px) !important;
+  color: var(--nova-text) !important;
+  background: rgba(34, 211, 238, 0.10) !important;
+  box-shadow: var(--nova-glow);
+}
+#button-play:hover { color: #061018 !important; background: var(--nova-grad) !important; }
+.bar-button.active, .bar-button.selected {
+  color: var(--nova-cyan) !important;
+  background: rgba(34, 211, 238, 0.12) !important;
+}
+
+/* Rrethi i skinit në qendër + rrota e skineve */
+.bar-circle-outer, .bar-circle {
+  border-radius: 50% !important;
+  box-shadow: 0 0 0 2px var(--nova-line-strong), var(--nova-glow) !important;
+  background: var(--nova-bg-1) !important;
+}
+.skin-preview { border-radius: 50% !important; }
+.skin-wheel-bg { background: var(--nova-glass) !important; border: 1px solid var(--nova-line) !important; }
+.skin-selector { border: 1px solid var(--nova-line) !important; border-radius: 10px !important; }
+.skin-selector:hover { box-shadow: var(--nova-glow-soft) !important; }
+
+/* ── Paneli i të dhënave të lojtarit (nick/skin/server) ─────────────────── */
+#player-data {
+  background: var(--nova-glass) !important;
+  border: 1px solid var(--nova-line) !important;
+  border-radius: var(--nova-radius) !important;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05) !important;
+  padding-top: 8px !important;
+}
+#player-data .decorator { background: transparent !important; }
+#mainBlock { padding: 6px !important; }
+
+.menu-inputs {
+  background: rgba(7, 10, 18, 0.85) !important;
+  color: var(--nova-text) !important;
+  border: 1px solid var(--nova-line) !important;
+  border-radius: 9px !important;
+  height: 32px !important;
+  font-family: var(--nova-font) !important;
+  font-weight: 600 !important;
+  transition: border-color .18s ease, box-shadow .18s ease !important;
+}
+.menu-inputs::placeholder { color: var(--nova-muted) !important; }
+.menu-inputs:focus {
+  border-color: var(--nova-cyan) !important;
+  box-shadow: var(--nova-glow) !important;
+}
+select.menu-inputs { cursor: pointer; }
+select.menu-inputs option { background: var(--nova-bg-1); color: var(--nova-text); }
+
+#streamMode {
+  color: var(--nova-muted) !important;
+  background: rgba(255,255,255,0.04) !important;
+  border-radius: 8px !important;
+}
+#streamMode:hover { color: var(--nova-cyan) !important; box-shadow: var(--nova-glow-soft) !important; }
+
+/* ── Shiriti i sipërm (menu-bar) + reconnect ────────────────────────────── */
+.menu-bar {
+  background: rgba(5, 7, 14, 0.65) !important;
+  border-bottom: 1px solid var(--nova-line) !important;
+}
+.menu-bar-button { color: var(--nova-muted) !important; }
+.menu-bar-button:hover { color: var(--nova-cyan) !important; }
+.menu-bar-ip { color: var(--nova-text) !important; font-family: var(--nova-font) !important; }
+.btn-reconnect, .material-button, .menu-button {
+  background: var(--nova-glass-soft) !important;
+  color: var(--nova-text) !important;
+  border: 1px solid var(--nova-line) !important;
+  border-radius: 8px !important;
+  font-family: var(--nova-font) !important;
+  font-weight: 600 !important;
+  transition: box-shadow .18s ease, border-color .18s ease !important;
+}
+.btn-reconnect:hover, .material-button:hover, .menu-button:hover {
+  border-color: var(--nova-cyan) !important;
+  box-shadow: var(--nova-glow) !important;
+}
+
+/* ── Panelet (Settings / Inputs / Theme) ────────────────────────────────── */
+.menu-panel {
+  background: var(--nova-glass) !important;
+  border: 1px solid var(--nova-line) !important;
+  border-radius: var(--nova-radius) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.65) !important;
+  color: var(--nova-text) !important;
+}
+.menu-panel .row .title,
+.menu-panel .title { color: var(--nova-text) !important; font-family: var(--nova-font) !important; font-weight: 600 !important; }
+.menu-panel .row { border-bottom: 1px solid rgba(255,255,255,0.04) !important; }
+.menu-panel .row.divider { background: var(--nova-line) !important; height: 1px; }
+
+.settings-options, .theme-options {
+  color: var(--nova-muted) !important;
+  font-family: var(--nova-font) !important;
+  font-weight: 600 !important;
+}
+.settings-options b, .theme-options b { color: var(--nova-muted) !important; cursor: pointer; }
+.settings-options b.active, .theme-options b.active {
+  color: var(--nova-cyan) !important;
+  text-shadow: 0 0 10px rgba(34,211,238,0.6);
+}
+.settings-options i, .theme-options i { color: var(--nova-violet) !important; }
+
+.settings-close, .theme-close, .inputs-tab.close, .settings-close i {
+  color: var(--nova-muted) !important;
+}
+.settings-close:hover, .theme-close:hover { color: var(--nova-pink) !important; }
+
+.inputs-tab-bar { border-bottom: 1px solid var(--nova-line) !important; }
+.inputs-tab { color: var(--nova-muted) !important; }
+.inputs-tab.active { color: var(--nova-cyan) !important; border-bottom: 2px solid var(--nova-cyan) !important; }
+.key, .command-input-box input {
+  background: rgba(7,10,18,0.85) !important;
+  color: var(--nova-text) !important;
+  border: 1px solid var(--nova-line) !important;
+  border-radius: 7px !important;
+}
+
+/* ── HUD: leaderboard + minimap + targeting ─────────────────────────────── */
+#leaderboard-hud {
+  background: rgba(8, 11, 20, 0.72) !important;
+  border: 1px solid var(--nova-line) !important;
+  border-radius: 12px !important;
+  padding: 6px 10px !important;
+}
+#leaderboard-head {
+  font-family: var(--nova-display) !important;
+  font-weight: 900 !important;
+  letter-spacing: 1px;
+  background: var(--nova-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--nova-cyan) !important;
+}
+#leaderboard-positions, #leaderboard-positions * { font-family: var(--nova-font) !important; }
+
+#minimap-hud { background: rgba(5,7,14,0.55) !important; border: 1px solid var(--nova-line) !important; border-radius: 10px !important; }
+.minimap-sector { color: rgba(255,255,255,0.10) !important; font-family: var(--nova-font) !important; }
+.minimap-button {
+  background: var(--nova-glass-soft) !important; color: var(--nova-muted) !important;
+  border: 1px solid var(--nova-line) !important; border-radius: 7px !important;
+}
+.minimap-button.active { color: var(--nova-cyan) !important; border-color: var(--nova-cyan) !important; box-shadow: var(--nova-glow-soft) !important; }
+
+.spectate-mode-btn { color: var(--nova-muted) !important; border: 1px solid var(--nova-line) !important; border-radius: 8px !important; }
+.spectate-mode-btn.active { color: var(--nova-cyan) !important; box-shadow: var(--nova-glow-soft) !important; }
+
+/* ── CHAT (i ri = chat.js #ONYX_CHAT_ROOT) — përshtatur me temën ─────────── */
+#ONYX_CHAT_ROOT {
+  background: rgba(8, 11, 20, 0.74) !important;
+  border: 1px solid var(--nova-line) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04) !important;
+}
+#ONYX_CHATInput, .onyx-chat-input-field {
+  background: rgba(7,10,18,0.9) !important;
+  color: var(--nova-text) !important;
+  border: 1px solid var(--nova-line) !important;
+  border-radius: 9px !important;
+  font-family: var(--nova-font) !important;
+}
+#ONYX_CHATInput:focus, .onyx-chat-input-field:focus {
+  border-color: var(--nova-cyan) !important;
+  box-shadow: var(--nova-glow) !important;
+  outline: none !important;
+}
+.onyx-emoji-toggle { color: var(--nova-violet) !important; }
+.onyx-emoji-toggle:hover { color: var(--nova-cyan) !important; }
+.onyx-chat-resize-handle { border-color: var(--nova-cyan) transparent !important; }
+
+/* ============================================================================
+   FSHIRJA E CHAT-IT TË VJETËR / NATIV
+   ----------------------------------------------------------------------------
+   - #chatroom + #message  → chat-i NATIV i senpa-s (kutia e dyfishtë poshtë-majtas)
+   - #chat-input-wrapper / #emojiContainer → mbetje e chat-it të vjetër EON.
+   SHËNIM: #chat-container / #chat-messages / #chat-input NUK fshihen më — ato
+   janë ID-të e chat-it të RI (chat.js i portuar nga bundle). Po t'i fshihnim,
+   chat-i i ri nuk shfaqej (display:none !important e mbylte).
+   ============================================================================ */
+#chatroom,
+#message-hud,
+#emojiContainer,
+#message,
+#chat-input-wrapper {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}

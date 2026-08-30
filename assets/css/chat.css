@@ -1,0 +1,54 @@
+/* Stilizimi i chat-it bazuar në parametrat e përditësuar */
+#chat-container {
+    position: fixed !important;
+    bottom: 60px !important;       /* U ngrit pak në 60px që mos të përpitet me FPS/Ping tek imazhi */
+    left: 20px !important;
+    width: 150px !important;       /* Detyron gjerësinë 150px */
+    height: 300px !important;      /* Detyron lartësinë 300px */
+    background: transparent !important; /* Plotësisht transparent */
+    border-radius: 5px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    pointer-events: none !important; /* Lejon klikimet e lojës përmes kutisë */
+    z-index: 9999 !important;      /* E sjell përpara çdo elementi tjetër */
+    box-sizing: border-box !important;
+}
+
+#chat-messages {
+    flex: 1 !important;
+    overflow-y: scroll !important; /* Aktivizon skrollin vertikal kapës */
+    overflow-x: hidden !important;
+    padding: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important; /* Rregullon rreshtimin që skrolli të punojë saktë */
+    pointer-events: auto !important; /* Lejon përdorimin e miut mbi mesazhe dhe skroll */
+}
+
+/* Stilimi i butonit të skrollit që të jetë i kapshëm */
+#chat-messages::-webkit-scrollbar {
+    width: 8px !important; /* Gjerësia e shiritit */
+}
+
+#chat-messages::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4) !important; /* Buton i dukshëm i bardhë gjysmë-transparent */
+    border-radius: 4px !important;
+    cursor: pointer !important;
+}
+
+#chat-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.8) !important; /* Ndizet kur i shkon miu sipër */
+}
+
+.chat-line {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px #000, -1px -1px 2px #000 !important; /* Hije që të lexohet mbi lojë */
+    word-wrap: break-word !important;
+}

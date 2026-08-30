@@ -1,0 +1,12 @@
+{
+  "name": "onyx-chat-relay",
+  "version": "1.0.0",
+  "description": "Local WebSocket relay for the delt.io chat (bypasses the browser Origin restriction).",
+  "private": true,
+  "scripts": {
+    "relay": "node relay.js"
+  },
+  "dependencies": {
+    "ws": "^8.21.0"
+  }
+}

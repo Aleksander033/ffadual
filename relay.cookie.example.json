@@ -1,0 +1,5 @@
+{
+  "_udhezim": "Riemerto kete skedar ne 'relay.cookie.json'. Hap https://delt.io ne Chrome, kalo Cloudflare, pastaj F12 -> Application -> Cookies -> https://delt.io -> kopjo vleren e 'cf_clearance'. Vendos User-Agent-in tend te sakte (shkruaj ne console: navigator.userAgent).",
+  "cookie": "cf_clearance=VENDOS_KETU_VLEREN",
+  "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
+}

@@ -1,0 +1,230 @@
+/* ============================================================================
+   ONYX × RYUTEN — Temë e frymëzuar nga ryuten.io
+   ----------------------------------------------------------------------------
+   Ngarkohet PAS onyx-theme.css. NUK prek motorin (deo.onyx) as lidhjen.
+   Vetëm pamja: ringjyros tokenat --nova-* në paletën e ryuten
+   (sfond i errët neutral + theks GOLD/amber), font Titillium Web,
+   sfond i menusë me fushën e orbeve të ryuten.
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap');
+
+/* ── Ringjyrosja e gjithë temës duke mbishkruar variablat e ONYX NOVA ────── */
+:root {
+  /* sfonde të errëta neutrale si ryuten (#1d1e25 / #1a1a1a) */
+  --nova-bg-0: #121318;
+  --nova-bg-1: #1a1b21;
+  --nova-glass: rgba(24, 25, 31, 0.82);
+  --nova-glass-soft: rgba(40, 41, 47, 0.62);
+
+  /* linjat/bordurat → gold i zbehtë */
+  --nova-line: rgba(240, 176, 64, 0.18);
+  --nova-line-strong: rgba(240, 176, 64, 0.48);
+
+  /* theksi kryesor: GOLD/amber (zëvendëson cyan/violet/pink kudo) */
+  --nova-cyan: #f0b040;
+  --nova-cyan-2: #ffc861;
+  --nova-violet: #e09a2c;
+  --nova-pink: #ff7a4d;
+
+  --nova-text: #f2f2f5;
+  --nova-muted: #9b9ca6;
+
+  --nova-grad: linear-gradient(135deg, #ffd27a 0%, #f0b040 50%, #e0892a 100%);
+  --nova-glow: 0 0 18px rgba(240, 176, 64, 0.45);
+  --nova-glow-soft: 0 0 10px rgba(224, 154, 44, 0.35);
+
+  --nova-font: 'Titillium Web', 'Segoe UI', sans-serif;
+  --nova-display: 'Titillium Web', 'Segoe UI', sans-serif;
+}
+
+/* ── Sfondi i menusë: fusha e orbeve të ryuten, e errësuar ──────────────── */
+body {
+  background-color: #0e0f13 !important;
+  font-family: var(--nova-font);
+}
+
+/* Kanavaca e lojës e mbulon body-n; prandaj sfondi i ryuten vihet te
+   menu-overlay (shfaqet VETËM në meny, jo në lojë). */
+#menu-overlay {
+  background-color: #0e0f13 !important;
+  background-image:
+    linear-gradient(180deg, rgba(14,15,19,0.55) 0%, rgba(8,9,12,0.82) 100%),
+    url('../ryuten/ryuten-bg.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+.menu-blur { background: rgba(8, 9, 12, 0.32) !important; }
+
+::selection { background: rgba(240,176,64,0.30); color: #1a1209; }
+
+/* ── Spote me ngjyrë cyan të hardcode-uara në onyx-theme.css → gold ──────── */
+.bar-button:hover {
+  background: rgba(240, 176, 64, 0.12) !important;
+  color: var(--nova-text) !important;
+}
+#button-play:hover { color: #1a1209 !important; background: var(--nova-grad) !important; }
+.bar-button.active, .bar-button.selected {
+  color: var(--nova-cyan) !important;
+  background: rgba(240, 176, 64, 0.14) !important;
+}
+.settings-options b.active, .theme-options b.active {
+  color: var(--nova-cyan) !important;
+  text-shadow: 0 0 10px rgba(240, 176, 64, 0.6) !important;
+}
+
+/* ── Tipografi më e fortë e brandit (titulli ONYX – Albion) ──────────────── */
+.menu-bar-ip, #leaderboard-head, .bar-button .text {
+  font-family: var(--nova-display) !important;
+}
+
+/* ── Chat-i mbetet i palëvizshëm + transparent (rregullimi i mëparshëm) ──── */
+#ONYX_CHAT_ROOT {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ============================================================================
+   SHTESA RYUTEN (1+2+3+4): iconfont, loading screen, disconnect screen,
+   rrethi i skinit. Vetëm pamja — asgjë te motori/lidhja.
+   ============================================================================ */
+
+/* ── (4) ICONFONT i ryuten ──────────────────────────────────────────────── */
+@font-face {
+  font-family: 'ryuten-iconfont';
+  src: url('../ryuten/iconfont.woff') format('woff');
+  font-display: block;
+}
+.ryf {
+  font-family: 'ryuten-iconfont' !important;
+  font-style: normal;
+  font-weight: 400 !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+}
+.ryf-settings::before { content: "\f12c"; }
+.ryf-play::before     { content: "\f125"; }
+.ryf-person::before   { content: "\f124"; }
+.ryf-gamepad::before  { content: "\f115"; }
+.ryf-edit::before     { content: "\f113"; }
+.ryf-spinner::before  { content: "\f12f"; }
+.ryf-warning::before  { content: "\f133"; }
+.ryf-reset::before    { content: "\f129"; }
+
+/* Madhësia e ikonave të menusë (njëlloj si material-icons md-36) */
+.bar-button i.ryf { font-size: 36px !important; }
+#button-play i.ryf { font-size: 40px !important; }
+.menu-bar-button i.ryf { font-size: 16px !important; }
+
+/* ── (1) LOADING SCREEN stili ryuten ────────────────────────────────────── */
+#loading-screen {
+  background-color: #0b0c10 !important;
+  background-image:
+    linear-gradient(180deg, rgba(11,12,16,0.62) 0%, rgba(6,7,10,0.92) 100%),
+    url('../ryuten/ryuten-bg.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+/* logoja RYUTEN sipër rrathëve të ngarkimit */
+#loading-screen .maou-circle-container::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -150px;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 90px;
+  background: url('../ryuten/ryuten-logo-full.webp') center/contain no-repeat;
+  filter: drop-shadow(0 0 18px rgba(224,168,46,0.45));
+  pointer-events: none;
+}
+/* rrathët e ngarkimit → gold i ryuten */
+#loading-screen .maou-circle-container .maou-circle.p1 { border-top-color: #ffcb3d !important; }
+#loading-screen .maou-circle-container .maou-circle.p2 { border-top-color: #e0a82e !important; }
+#loading-screen .maou-circle-container .maou-circle.p3 { border-top-color: #b9842033 !important; }
+/* mesazhi → Titillium gold, jo gjigant */
+#loading-screen .message {
+  font-family: 'Titillium Web', sans-serif !important;
+  font-size: 30px !important;
+  letter-spacing: 6px !important;
+  text-transform: uppercase !important;
+  color: #f5e6c8 !important;
+  bottom: 180px !important;
+  text-shadow: 0 0 22px rgba(224,168,46,0.55), 0 2px 6px #000 !important;
+}
+
+/* ── (2) DISCONNECT / RECONNECT SCREEN stili ryuten ─────────────────────── */
+#ryuten-dc {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: radial-gradient(ellipse at center, rgba(8,9,12,0.78) 0%, rgba(4,5,8,0.92) 100%);
+  backdrop-filter: blur(3px);
+  pointer-events: none;
+  font-family: 'Titillium Web', sans-serif;
+}
+#ryuten-dc.show { display: flex; }
+#ryuten-dc .ryf-spinner {
+  font-size: 56px;
+  color: #e0a82e;
+  filter: drop-shadow(0 0 16px rgba(224,168,46,0.6));
+  animation: ryuten-dc-spin 1.4s linear infinite;
+}
+@keyframes ryuten-dc-spin { to { transform: rotate(360deg); } }
+#ryuten-dc .ryuten-dc-title {
+  margin-top: 22px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #f5e6c8;
+  text-shadow: 0 0 18px rgba(224,168,46,0.5);
+}
+#ryuten-dc .ryuten-dc-sub {
+  margin-top: 8px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #b9b29a;
+}
+
+/* ── (3) RRETHI I SKINIT stili ryuten (gold ring + SKIN 1/2) ─────────────── */
+.bar-circle-outer {
+  background: linear-gradient(135deg, #ffd27a 0%, #e0a82e 50%, #b97f1f 100%) !important;
+  box-shadow: 0 0 22px rgba(224,168,46,0.45), inset 0 0 0 1px rgba(0,0,0,0.25) !important;
+}
+.bar-circle { background: #0e0f13 !important; }
+.skin-preview {
+  background-color: #15161c !important;
+  box-shadow: inset 0 0 0 2px rgba(224,168,46,0.35) !important;
+}
+/* etiketat SKIN 1 / SKIN 2 si te ryuten (shfaqen kur hover mbi rreth) */
+.bar-circle-outer::before,
+.bar-circle-outer::after {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #1a1209;
+  background: rgba(255,210,122,0.92);
+  padding: 2px 10px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity .2s;
+  pointer-events: none;
+  z-index: 3;
+}
+.bar-circle-outer::before { content: 'SKIN 1'; top: 14px; }
+.bar-circle-outer::after  { content: 'SKIN 2'; bottom: 14px; }
+.bar-circle-outer:hover::before,
+.bar-circle-outer:hover::after { opacity: 1; }
